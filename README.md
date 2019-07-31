@@ -1,4 +1,4 @@
-# Listen1 Mobile V0.70
+# Listen1 Mobile V0.7.2
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
