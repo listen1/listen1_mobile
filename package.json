@@ -8,6 +8,7 @@
     "start:android:no-packager": "react-native run-android --no-packager",
     "start:ios": "concurrently -r 'react-native start' 'yarn start:ios:no-packager'",
     "start:ios:no-packager": "react-native run-ios --no-packager",
+    "link": "react-native link",
     "eslint": "eslint .",
     "test": "jest"
   },
