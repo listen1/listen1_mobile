@@ -8,6 +8,8 @@
 
 **支持 iOS 和 Android 平台**
 
+[![imgur](https://i.imgur.com/zYyaK92.png)]()
+
 ## 特性
 
 - 一个 App 播放多平台的音乐
