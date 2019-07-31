@@ -148,7 +148,7 @@ class ModalPlayerView extends React.Component {
 
     const isFav = this.getFavStatus();
 
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ModalPlayer>

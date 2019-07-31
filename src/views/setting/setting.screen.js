@@ -65,7 +65,7 @@ class Setting extends React.Component {
     this.props.navigation.navigate('ImportLocal');
   }
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ThemeFlex>

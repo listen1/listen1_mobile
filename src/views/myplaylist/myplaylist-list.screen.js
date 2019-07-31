@@ -41,7 +41,7 @@ class MyPlaylistList extends React.Component {
     });
   };
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ThemeFlex>

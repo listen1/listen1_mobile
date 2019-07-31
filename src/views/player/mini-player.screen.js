@@ -64,7 +64,7 @@ class MiniPlayer extends React.Component {
     const noTrack = this.props.playerState.nowplayingTrack === null;
     const { isPlaying } = this.props.playerState;
 
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <TouchableOpacity

@@ -29,7 +29,7 @@ class OptionRowClass extends React.PureComponent {
   };
 
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
     const { option } = this.props;
 
     return (

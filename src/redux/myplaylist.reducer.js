@@ -65,7 +65,7 @@ function handleAddToMyPlaylist(state, action) {
 function handleAddToMyFavorite(state, action) {
   const { payload: track } = action;
 
-  console.log(state.myFavoriteIds, track);
+  // console.log(state.myFavoriteIds, track);
 
   if (state.myFavoriteIds[track.id] !== undefined) {
     // track already in favorite

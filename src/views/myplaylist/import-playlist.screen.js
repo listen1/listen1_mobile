@@ -3,7 +3,6 @@ import { TextInput } from 'react-native';
 import { connect } from 'react-redux';
 import { withTheme } from 'styled-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { createMyPlaylist } from '../../redux/actions';
 import { ThemeFlex, PrimaryText } from '../../components';
 import Client from '../../api/client';
 
@@ -30,7 +29,6 @@ class ImportPlaylist extends React.Component {
     };
   };
   props: {
-    dispatch: Function,
     navigation: Object,
     theme: Object,
   };

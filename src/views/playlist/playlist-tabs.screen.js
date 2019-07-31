@@ -49,7 +49,7 @@ class PlaylistTabs extends PureComponent {
   render() {
     const { text } = this.props.searchState;
 
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ThemeFlex>

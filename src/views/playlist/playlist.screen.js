@@ -138,7 +138,7 @@ class Playlist extends React.Component {
       info = this.state.info;
       tracks = this.state.tracks;
     }
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <Flex style={{ backgroundColor: this.props.theme.backgroundColor }}>

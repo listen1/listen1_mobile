@@ -1,6 +1,6 @@
 {
   "name": "listen1-mobile",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "private": true,
   "scripts": {
     "start": "react-native start",

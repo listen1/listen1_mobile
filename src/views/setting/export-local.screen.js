@@ -35,7 +35,6 @@ class ExportLocal extends React.Component {
       myPlaylistState: this.props.myPlaylistState,
     });
 
-    console.log(jsonObj);
     this.setState({ jsonString: JSON.stringify(jsonObj) });
   }
   onPressCopy = () => {
@@ -43,7 +42,7 @@ class ExportLocal extends React.Component {
     showToast('已复制到剪切板');
   };
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ThemeFlex style={{ padding: 20 }}>

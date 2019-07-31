@@ -53,7 +53,7 @@ class ImportLocal extends React.Component {
     showToast('恢复成功,请返回');
   };
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ThemeFlex style={{ padding: 20 }}>

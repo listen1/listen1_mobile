@@ -45,7 +45,7 @@ class PlaylistGrid extends PureComponent {
     this.requestData(this.state.result.length);
   };
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
     const { refreshing } = this.state;
     const itemDimension = 100;
     const titleHeight = 50;

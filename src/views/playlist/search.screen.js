@@ -66,7 +66,7 @@ class Search extends React.Component {
       this.setState({ isRefreshing: true });
     }
 
-    console.log(`searching ${text} in ${this.props.tabIndex}, page: ${page}`);
+    // console.log(`searching ${text} in ${this.props.tabIndex}, page: ${page}`);
     this.setState({});
     Client.search(text, searchPage, this.props.platformId).then(r => {
       if (searchPage === 1) {
@@ -115,7 +115,7 @@ class Search extends React.Component {
   }
 
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ThemeFlex>

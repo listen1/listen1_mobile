@@ -53,7 +53,7 @@ class NavHeader extends Component {
   render() {
     const { searchText, isFocus } = this.state;
 
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <View

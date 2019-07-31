@@ -86,7 +86,7 @@ class ModalLiteContainer extends React.Component {
     this.props.dispatch(removeTrack(item));
   };
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ModalLite

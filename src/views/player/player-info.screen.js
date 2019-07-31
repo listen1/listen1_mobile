@@ -49,7 +49,7 @@ class PlayerInfo extends React.PureComponent {
     const { nowplayingTrack, isFav } = this.props;
     const noTrack = nowplayingTrack === null;
 
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <ModalSongInfo>

@@ -31,7 +31,7 @@ export default class PlaylistPopup extends React.PureComponent {
   };
 
   render() {
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <View style={{ flex: 1 }}>

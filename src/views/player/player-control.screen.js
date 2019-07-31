@@ -51,7 +51,7 @@ class PlayerControl extends React.PureComponent {
   render() {
     const { isPlaying } = this.props;
 
-    console.log(`render ${this.constructor.name}`);
+    // console.log(`render ${this.constructor.name}`);
 
     return (
       <PlayControlRow>
