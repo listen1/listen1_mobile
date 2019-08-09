@@ -1,4 +1,4 @@
-# Listen1 Mobile V0.7.3
+# Listen1 Mobile V0.7.4
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
@@ -7,6 +7,8 @@
 一款支持多平台音乐播放和搜索的移动音乐 App。现有版本已支持网易云音乐，QQ 音乐，虾米音乐。还有丰富的歌单管理功能。使用 React Native 开发，基于 MIT 协议开源免费。
 
 **支持 iOS 和 Android 平台**
+
+[![imgur](https://i.imgur.com/zYyaK92.png)]()
 
 ## 特性
 
@@ -25,7 +27,7 @@ iOS 只支持编译安装，请拥有开发者证书的开发者连接 iPhone �
 
 ### Andriod
 
-下载 apk 安装
+下载 apk 安装, apk 下载地址请访问[项目 release 页面](https://github.com/listen1/listen1_mobile/releases)
 
 ## 编译
 
@@ -34,6 +36,15 @@ iOS 只支持编译安装，请拥有开发者证书的开发者连接 iPhone �
 - `yarn run link` 链接 React Native 的依赖库
 - `yarn start:ios` 将在 iOS 模拟器上运行项目
 - `yarn start:android` 将在安卓真机或模拟器（取决于手机是否连接）运行项目
+
+Apk 打包
+
+```
+   cd .\android\
+   ./gradlew assembleRelease
+   react-native run-android --variant=release
+
+```
 
 ## 代码基本结构
 
@@ -54,6 +65,10 @@ iOS 只支持编译安装，请拥有开发者证书的开发者连接 iPhone �
 开发过程还有很多开源软件提供了各种问题的解决方案，详见代码注释，篇幅原因不一一列出，感谢开源社区的各位开发者。
 
 ## 更新日志
+
+`2019-08-09`
+
+- 修复网易云音乐无法访问的 bug
 
 `2019-07-31`
 
