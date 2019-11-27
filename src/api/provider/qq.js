@@ -49,9 +49,7 @@ function qqConvertSong(song) {
     album_id: `qqalbum_${song.albummid}`,
     img_url: qqGetImageUrl(song.albummid, 'album'),
     source: 'qq',
-    source_url: `http://y.qq.com/#type=song&mid=${
-      song.songmid
-    }&tpl=yqq_song_detail`,
+    source_url: `http://y.qq.com/#type=song&mid=${song.songmid}&tpl=yqq_song_detail`,
     url: `qqtrack_${song.songmid}`,
     disabled: !qqIsPlayable(song),
   };
@@ -167,8 +165,11 @@ function bootstrapTrack(trackId) {
     'format%22%3A%22json%22%2C%22ct%22%3A20%2C%22cv%22%3A0%7D%7D';
 
   return fetch(targetUrl, {
+    method: 'GET',
     headers: {
       Referer: 'https://y.qq.com/',
+      'User-Agent':
+        'Mozilla/5.0 (Linux; U; Android 8.1.0; zh-cn; BLA-AL00 Build/HUAWEIBLA-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 MQQBrowser/8.9 Mobile Safari/537.36',
     },
   })
     .then(response => response.json())
