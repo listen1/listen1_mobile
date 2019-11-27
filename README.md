@@ -1,4 +1,4 @@
-# Listen1 Mobile V0.7.4
+# Listen1 Mobile V0.7.5
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
@@ -65,6 +65,10 @@ Apk 打包
 开发过程还有很多开源软件提供了各种问题的解决方案，详见代码注释，篇幅原因不一一列出，感谢开源社区的各位开发者。
 
 ## 更新日志
+
+`2019-11-27`
+
+- 修复 qq 音乐因 user-agent 无法访问的 bug
 
 `2019-08-09`
 
