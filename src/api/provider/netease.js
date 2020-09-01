@@ -86,7 +86,7 @@ function getNEScore(song) {
 }
 
 function isPlayable(song) {
-  return (song.fee !== 4) && (song.fee !== 1);
+  return getNEScore(song) < 100;
 }
 
 function convert(allowAll) {
