@@ -20,7 +20,12 @@ class ModalPlayerContainer extends React.Component {
     const deviceHeight = Dimensions.get('window').height;
 
     return (
-      <Modal visible={this.props.modalState.isOpen}>
+      <Modal
+        visible={this.props.modalState.isOpen}
+        onRequestClose={() => {
+          this.props.dispatch(toggleModal());
+        }}
+      >
         <ModalPlayer />
       </Modal>
     );
