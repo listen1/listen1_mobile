@@ -13,7 +13,7 @@ function requestAPI(url, data) {
     },
     body: queryString.stringify(weapi(data)),
   })
-    .then(response => {
+    .then((response) => {
       return response.json();
     })
     .catch(() => {
@@ -38,8 +38,8 @@ function showPlaylist(offset) {
   const url = 'https://music.163.com/weapi/playlist/list';
 
   return requestAPI(url, data)
-    .then(r => {
-      const playlists = r.playlists.map(item => ({
+    .then((r) => {
+      const playlists = r.playlists.map((item) => ({
         cover_img_url: getSmallImageUrl(item.coverImgUrl),
         title: item.name,
         id: `neplaylist_${item.id}`,
@@ -67,13 +67,16 @@ function getNEScore(song) {
       privilege.fee !== 8 &&
       privilege.payed === 0 &&
       privilege.pl <= 0
-    ) return 10;
-    if (privilege.fee === 16 || (privilege.fee === 4 && privilege.flag & 2048)) return 11;
+    )
+      return 10;
+    if (privilege.fee === 16 || (privilege.fee === 4 && privilege.flag & 2048))
+      return 11;
     if (
       (privilege.fee === 0 || privilege.payed) &&
       privilege.pl > 0 &&
       privilege.dl === 0
-    ) return 1e3;
+    )
+      return 1e3;
     if (privilege.pl === 0 && privilege.dl === 0) return 100;
 
     return 0;
@@ -90,7 +93,7 @@ function isPlayable(song) {
 }
 
 function convert(allowAll) {
-  return songInfo => ({
+  return (songInfo) => ({
     id: `netrack_${songInfo.id}`,
     title: songInfo.name,
     artist: songInfo.ar[0].name,
@@ -99,7 +102,7 @@ function convert(allowAll) {
     album_id: `nealbum_${songInfo.al.id}`,
     source: 'netease',
     source_url: `http://music.163.com/#/song?id=${songInfo.id}`,
-    img_url: getSmallImageUrl(songInfo.al.picUrl),
+    img_url: songInfo.al.picUrl,
     url: `netrack_${songInfo.id}`,
     disabled: allowAll ? false : !isPlayable(songInfo),
   });
@@ -119,7 +122,7 @@ function getPlaylist(playlistId) {
   const playlist_url = 'http://music.163.com/weapi/v3/playlist/detail';
   const tracks_url = 'https://music.163.com/weapi/v3/song/detail';
 
-  return requestAPI(playlist_url, data).then(resData => {
+  return requestAPI(playlist_url, data).then((resData) => {
     const info = {
       id: `neplaylist_${listId}`,
       cover_img_url: getSmallImageUrl(resData.playlist.coverImgUrl),
@@ -129,15 +132,15 @@ function getPlaylist(playlistId) {
 
     // request all tracks to fetch song info
     // Code reference from listen1_chrome_extension
-    const track_ids = resData.playlist.trackIds.map(i=>i.id);
+    const track_ids = resData.playlist.trackIds.map((i) => i.id);
     const data = {
-      c: '[' + track_ids.map(id => ('{"id":' + id + '}')).join(',') + ']',
-      ids: '[' + track_ids.join(',') + ']'
-    }
+      c: '[' + track_ids.map((id) => '{"id":' + id + '}').join(',') + ']',
+      ids: '[' + track_ids.join(',') + ']',
+    };
 
-    return requestAPI(tracks_url, data).then(response => {
-      const tracks=response.songs.map(convert(true));
-      return {info, tracks,};
+    return requestAPI(tracks_url, data).then((response) => {
+      const tracks = response.songs.map(convert(true));
+      return { info, tracks };
     });
   });
 }
@@ -155,7 +158,7 @@ function bootstrapTrack(trackId) {
     csrf_token: '',
   };
 
-  return requestAPI(url, data).then(resData => {
+  return requestAPI(url, data).then((resData) => {
     const { url: songUrl } = resData.data[0];
 
     if (songUrl === null) {
@@ -179,7 +182,7 @@ function search(keyword, page) {
     type: '1',
   };
 
-  return requestAPI(url, data).then(resData => {
+  return requestAPI(url, data).then((resData) => {
     const tracks = resData.result.songs.map(convert(false));
 
     return {
