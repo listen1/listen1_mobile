@@ -3,7 +3,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled, { withTheme } from 'styled-components';
 import TextTicker from 'react-native-text-ticker';
 import { colors } from '../../config/colors';
-import { MarqueeHorizontal } from 'react-native-marquee-ab';
 
 const ControlButton = styled.TouchableOpacity`
   width: 60;
@@ -71,8 +70,7 @@ class PlayerInfo extends React.PureComponent {
           <ModalSongTitle>
             <TextTicker
               style={{ fontSize: 18, color: this.props.theme.primaryColor }}
-              loop
-              repeatSpacer={0}
+              repeatSpacer={100}
               marqueeDelay={1000}
             >
               {noTrack ? 'Listen1' : nowplayingTrack.title}
