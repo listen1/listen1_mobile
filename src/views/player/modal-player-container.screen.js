@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'react-native-modal';
+import { Modal } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Dimensions } from 'react-native';
@@ -20,16 +20,7 @@ class ModalPlayerContainer extends React.Component {
     const deviceHeight = Dimensions.get('window').height;
 
     return (
-      <Modal
-        isVisible={this.props.modalState.isOpen}
-        onSwipeComplete={() => this.props.dispatch(toggleModal())}
-        swipeDirection="down"
-        deviceWidth={deviceWidth}
-        deviceHeight={deviceHeight}
-        style={{ margin: 0 }}
-        propagateSwipe // allow pass swipe event to its children
-        onBackButtonPress={() => this.props.dispatch(toggleModal())}
-      >
+      <Modal visible={this.props.modalState.isOpen}>
         <ModalPlayer />
       </Modal>
     );
