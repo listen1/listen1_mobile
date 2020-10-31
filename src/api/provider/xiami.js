@@ -13,7 +13,7 @@ class MyStorage {
 
     return null;
   };
-  static getData = async key => {
+  static getData = async (key) => {
     try {
       return await AsyncStorage.getItem(key);
     } catch (error) {
@@ -21,7 +21,7 @@ class MyStorage {
       return null;
     }
   };
-  static deleteData = async key => {
+  static deleteData = async (key) => {
     try {
       return await AsyncStorage.removeItem(key);
     } catch (error) {
@@ -132,9 +132,7 @@ async function requestAPI(api, params) {
 
   const response = await fetch(url, {
     headers: {
-      cookie: `xm_sg_tk=${token.xm_sg_tk}; xm_sg_tk.sig=${
-        token['xm_sg_tk.sig']
-      }`,
+      cookie: `xm_sg_tk=${token.xm_sg_tk}; xm_sg_tk.sig=${token['xm_sg_tk.sig']}`,
     },
   });
 
@@ -194,8 +192,8 @@ function showPlaylist(offset) {
     dataType: 'system',
   };
 
-  return requestAPI(api, params).then(data => {
-    const playlists = data.result.data.collects.map(d => {
+  return requestAPI(api, params).then((data) => {
+    const playlists = data.result.data.collects.map((d) => {
       const playlist = {
         cover_img_url: '',
         title: '',
@@ -217,27 +215,31 @@ function showPlaylist(offset) {
 
 function getPlaylist(playlistId) {
   const listId = playlistId.split('_').pop();
-  const api = '/api/collect/initialize';
+  const api = '/api/collect/getCollectStaticUrl';
   const params = {
     listId: parseInt(listId, 10),
   };
 
-  return requestAPI(api, params).then(data => {
-    const collect = data.result.data.collectDetail;
-    const info = {
-      cover_img_url: xmGetLowQualityImgUrl(collect.collectLogo),
-      title: collect.collectName,
-      id: `xmplaylist_${listId}`,
-      source_url: `http://www.xiami.com/collect/${listId}`,
-    };
-    const tracks = data.result.data.collectSongs.map(item =>
-      xmConvertSong2(item, 'artist_name')
-    );
+  return requestAPI(api, params).then((response) => {
+    const collect_url = response.result.data.data.data.url;
 
-    return {
-      tracks,
-      info,
-    };
+    return fetch(collect_url)
+      .then((response) => response.json())
+      .then((collect_response) => {
+        let data = collect_response;
+        const info = {
+          cover_img_url: xmGetLowQualityImgUrl(data.resultObj.collectLogo),
+          title: data.resultObj.collectName,
+          id: `xmplaylist_${listId}`,
+          source_url: `http://www.xiami.com/collect/${listId}`,
+        };
+        const tracks = data.resultObj.songs.map((item) => xmConvertSong2(item));
+
+        return {
+          tracks,
+          info,
+        };
+      });
   });
 }
 function search(keyword, curpage) {
@@ -258,9 +260,9 @@ function search(keyword, curpage) {
       referer: 'http://h.xiami.com/',
     },
   })
-    .then(response => response.json())
-    .then(response => {
-      const tracks = response.data.songs.map(item =>
+    .then((response) => response.json())
+    .then((response) => {
+      const tracks = response.data.songs.map((item) =>
         xmConvertSong(item, 'artist_name')
       );
 
@@ -285,9 +287,9 @@ function search2(keyword, curpage) {
 
   // console.log(api, params);
 
-  return requestAPI(api, params).then(data => {
+  return requestAPI(api, params).then((data) => {
     // console.log(data);
-    const tracks = data.result.data.songs.map(item =>
+    const tracks = data.result.data.songs.map((item) =>
       xmConvertSong2(item, 'artistName')
     );
 
@@ -308,8 +310,8 @@ function bootstrapTrack(trackId) {
       Referer: 'https://www.xiami.com',
     },
   })
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       // console.log(data);
       if (data.data.trackList == null) {
         return '';
