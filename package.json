@@ -13,6 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-community/toolbar-android": "^0.1.0-rc.2",
     "deprecated-react-native-listview": "^0.0.5",
     "md5": "^2.2.1",
     "query-string": "^6.8.1",
