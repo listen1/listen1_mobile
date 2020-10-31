@@ -21,7 +21,7 @@ function shuffle(a) {
 }
 
 function generateShuffleIds(tracks) {
-  const newShuffleIds = tracks.map(track => track.id);
+  const newShuffleIds = tracks.map((track) => track.id);
 
   shuffle(newShuffleIds);
 
@@ -41,21 +41,23 @@ function safeArrayIndex(array, index) {
 }
 
 function getTrackByOffset(state, offset) {
-  const index = state.tracks.findIndex(i => i.id === state.nowplayingTrack.id);
+  const index = state.tracks.findIndex(
+    (i) => i.id === state.nowplayingTrack.id
+  );
 
   return safeArrayIndex(state.tracks, index + offset);
 }
 
 function getShuffleTrackByOffset(state, offset) {
   const shuffleIndex = state.shuffleIds.findIndex(
-    id => id === state.nowplayingTrack.id
+    (id) => id === state.nowplayingTrack.id
   );
 
   const nowplayingTrackId = safeArrayIndex(
     state.shuffleIds,
     shuffleIndex + offset
   );
-  const trackIndex = state.tracks.findIndex(i => i.id === nowplayingTrackId);
+  const trackIndex = state.tracks.findIndex((i) => i.id === nowplayingTrackId);
 
   return state.tracks[trackIndex];
 }
@@ -126,14 +128,13 @@ const playerReducerBase = (state = defaultPlayerState, action) => {
   let index;
   let newPlayMode;
   let newShuffleIds;
-
   switch (action.type) {
     case TYPE.PLAY:
       return { ...state, isPlaying: true };
     case TYPE.PAUSE:
-      return pause();
+      return pause(state);
     case TYPE.PLAY_TRACK:
-      if (state.tracks.findIndex(i => i.id === action.track.id) !== -1) {
+      if (state.tracks.findIndex((i) => i.id === action.track.id) !== -1) {
         return { ...state, isPlaying: true, nowplayingTrack: action.track };
       }
 
@@ -173,7 +174,7 @@ const playerReducerBase = (state = defaultPlayerState, action) => {
     case TYPE.PLAY_TRACKS:
       if (state.playMode === ENUM_PLAYMODE.SHUFFLE) {
         newShuffleIds = generateShuffleIds(action.tracks);
-        index = state.tracks.findIndex(i => i.id === newShuffleIds[0]);
+        index = state.tracks.findIndex((i) => i.id === newShuffleIds[0]);
 
         return {
           ...state,
@@ -258,14 +259,14 @@ const playerReducerBase = (state = defaultPlayerState, action) => {
       if (state.playMode === ENUM_PLAYMODE.SHUFFLE) {
         return {
           ...state,
-          tracks: state.tracks.filter(i => i.id !== action.payload.id),
-          shuffleIds: state.shuffleIds.filter(id => id !== action.payload.id),
+          tracks: state.tracks.filter((i) => i.id !== action.payload.id),
+          shuffleIds: state.shuffleIds.filter((id) => id !== action.payload.id),
         };
       }
 
       return {
         ...state,
-        tracks: state.tracks.filter(i => i.id !== action.payload.id),
+        tracks: state.tracks.filter((i) => i.id !== action.payload.id),
       };
 
     case TYPE.UPDATE_PLAYER:
