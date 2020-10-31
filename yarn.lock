@@ -5664,6 +5664,11 @@ react-native-safe-area-view@^0.14.1:
   resolved "https://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.22.tgz#7a120377b52aa9bbb94d0b8541a014026be9289b"
   integrity sha1-ehIDd7Uqqbu5TQuFQaAUAmvpKJs=
 
+react-native-screens@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.npm.taobao.org/react-native-screens/download/react-native-screens-2.12.0.tgz?cache=0&sync_timestamp=1603797697069&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-native-screens%2Fdownload%2Freact-native-screens-2.12.0.tgz#579b7a6f99b3dd777ef4a447682e46f10ce9f5eb"
+  integrity sha1-V5t6b5mz3Xd+9KRHaC5G8Qzp9es=
+
 react-native-scrollable-tab-view@^0.10.0:
   version "0.10.0"
   resolved "https://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-0.10.0.tgz#8ce7908254685ee37d35df7d849676eaa1e81132"
