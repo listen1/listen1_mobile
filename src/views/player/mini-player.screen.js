@@ -13,7 +13,7 @@ const MiniBar = styled.View`
   width: 100%;
   height: ${miniPlayerSetting.height + miniPlayerSetting.paddingBottom};
   paddingBottom: ${miniPlayerSetting.paddingBottom}}
-  background-color: ${props => props.theme.windowColor};
+  background-color: ${(props) => props.theme.windowColor};
 `;
 const SongLogo = styled.Image`
   width: ${miniPlayerSetting.height};
@@ -28,12 +28,14 @@ const SongTitle = styled.Text`
   font-size: ${miniPlayerSetting.titleFontSize};
   text-align: center;
   margin-bottom: 3px;
-  color: ${props => props.theme.primaryColor};
+  color: ${(props) => props.theme.primaryColor};
+  overflow: hidden;
 `;
 const ArtistTitle = styled.Text`
   font-size: ${miniPlayerSetting.subtitleFontSize};
   text-align: center;
-  color: ${props => props.theme.secondaryColor};
+  color: ${(props) => props.theme.secondaryColor};
+  overflow: hidden;
 `;
 const PlayButton = styled.TouchableOpacity`
   width: ${miniPlayerSetting.height};
@@ -81,12 +83,12 @@ class MiniPlayer extends React.Component {
               }
             />
             <SongInfo>
-              <SongTitle>
+              <SongTitle numberOfLines={1}>
                 {noTrack
                   ? 'Listen 1'
                   : this.props.playerState.nowplayingTrack.title}
               </SongTitle>
-              <ArtistTitle>
+              <ArtistTitle numberOfLines={1}>
                 {noTrack
                   ? 'Artist'
                   : this.props.playerState.nowplayingTrack.artist}

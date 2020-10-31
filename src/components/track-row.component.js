@@ -29,11 +29,13 @@ const PlaylistStatus = styled.TouchableOpacity`
 
 const PlaylistItemSongTitle = styled.Text`
   font-size: 14;
-  color: ${props => props.theme.primaryColor};
+  color: ${(props) => props.theme.primaryColor};
+  overflow: hidden;
 `;
 const PlaylistItemSongInfo = styled.Text`
   font-size: 12;
-  color: ${props => props.theme.secondaryColor};
+  color: ${(props) => props.theme.secondaryColor};
+  overflow: hidden;
 `;
 
 export class TrackRowClass extends React.PureComponent {
@@ -81,10 +83,10 @@ export class TrackRowClass extends React.PureComponent {
           </PlaylistStatus>
         ) : null}
         <PlaylistInfo>
-          <PlaylistItemSongTitle style={textStyle}>
+          <PlaylistItemSongTitle numberOfLines={1} style={textStyle}>
             {this.props.item.title}
           </PlaylistItemSongTitle>
-          <PlaylistItemSongInfo style={textStyle}>
+          <PlaylistItemSongInfo numberOfLines={1} style={textStyle}>
             {this.props.item.artist} - {this.props.item.album}
           </PlaylistItemSongInfo>
         </PlaylistInfo>
