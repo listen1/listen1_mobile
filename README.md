@@ -1,4 +1,4 @@
-# Listen1 Mobile V0.7.5
+# Listen1 Mobile V0.8.0
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
@@ -80,8 +80,11 @@ https://reactnative.cn/docs/signed-apk-android
 
 `2020-10-31`
 - 修复网易云歌单只有10首歌的bug （感谢 @eatenid 的提交)
+- 修复虾米云音乐歌单只有30首的bug
+- 优化过长歌曲名或标题的显示
 - 优化下侧播放控制栏的弹窗性能
 - 修正了点击暂停按钮时导致闪退的 bug
+- 支持GitHub action在线打包
 
 `2019-11-27`
 
