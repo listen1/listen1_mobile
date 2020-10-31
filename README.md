@@ -31,6 +31,14 @@ iOS 只支持编译安装，请拥有开发者证书的开发者连接 iPhone �
 
 ## 编译
 
+开发环境
+
+- Java 8 JDK （更高版本需更新默认 gradle 版本）
+- Nodejs 8 （版本>12.10.0 可能遇到 metro 一个关于正则表达式的 bug 导致的启动失败）
+- Android Studio (Android SDK 版本 v28)
+
+编译步骤
+
 - Clone 或下载本项目代码
 - `yarn` 安装依赖
 - `yarn run link` 链接 React Native 的依赖库
@@ -45,6 +53,10 @@ Apk 打包
    react-native run-android --variant=release
 
 ```
+
+更详细的打包信息（包括生成 keystone）
+
+https://reactnative.cn/docs/signed-apk-android
 
 ## 代码基本结构
 
@@ -65,6 +77,11 @@ Apk 打包
 开发过程还有很多开源软件提供了各种问题的解决方案，详见代码注释，篇幅原因不一一列出，感谢开源社区的各位开发者。
 
 ## 更新日志
+
+`2020-10-31`
+
+- 优化下侧播放控制栏的弹窗性能
+- 修正了点击暂停按钮时导致闪退的 bug
 
 `2019-11-27`
 
