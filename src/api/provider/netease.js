@@ -116,21 +116,29 @@ function getPlaylist(playlistId) {
     csrf_token: '',
   };
 
-  const url = 'http://music.163.com/weapi/v3/playlist/detail';
+  const playlist_url = 'http://music.163.com/weapi/v3/playlist/detail';
+  const tracks_url = 'https://music.163.com/weapi/v3/song/detail';
 
-  return requestAPI(url, data).then(resData => {
+  return requestAPI(playlist_url, data).then(resData => {
     const info = {
       id: `neplaylist_${listId}`,
       cover_img_url: getSmallImageUrl(resData.playlist.coverImgUrl),
       title: resData.playlist.name,
       source_url: `http://music.163.com/#/playlist?id=${listId}`,
     };
-    const tracks = resData.playlist.tracks.map(convert(true));
 
-    return {
-      info,
-      tracks,
-    };
+    // request all tracks to fetch song info
+    // Code reference from listen1_chrome_extension
+    const track_ids = resData.playlist.trackIds.map(i=>i.id);
+    const data = {
+      c: '[' + track_ids.map(id => ('{"id":' + id + '}')).join(',') + ']',
+      ids: '[' + track_ids.join(',') + ']'
+    }
+
+    return requestAPI(tracks_url, data).then(response => {
+      const tracks=response.songs.map(convert(true));
+      return {info, tracks,};
+    });
   });
 }
 
