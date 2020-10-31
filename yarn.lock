@@ -5614,7 +5614,7 @@ react-native-elements@^1.1.0:
     react-native-ratings "^6.3.0"
     react-native-status-bar-height "^2.2.0"
 
-react-native-gesture-handler@^1.3.0:
+react-native-gesture-handler@1.3.0:
   version "1.3.0"
   resolved "https://registry.npm.taobao.org/react-native-gesture-handler/download/react-native-gesture-handler-1.3.0.tgz#d0386f565928ccc1849537f03f2e37fd5f6ad43f"
   integrity sha1-0DhvVlkozMGElTfwPy43/V9q1D8=
@@ -5706,6 +5706,11 @@ react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   integrity sha1-8RPNh0hYCPDJkavsk39w+jgEeLk=
   dependencies:
     prop-types "^15.6.1"
+
+react-native-text-ticker@^1.10.0:
+  version "1.10.0"
+  resolved "https://registry.npm.taobao.org/react-native-text-ticker/download/react-native-text-ticker-1.10.0.tgz#7d927a86c6edbc8c89882e9d9b9d87d1ecab4acf"
+  integrity sha1-fZJ6hsbtvIyJiC6dm52H0eyrSs8=
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"

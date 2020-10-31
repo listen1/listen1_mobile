@@ -1,8 +1,9 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styled, { withTheme } from 'styled-components';
-
+import TextTicker from 'react-native-text-ticker';
 import { colors } from '../../config/colors';
+import { MarqueeHorizontal } from 'react-native-marquee-ab';
 
 const ControlButton = styled.TouchableOpacity`
   width: 60;
@@ -27,14 +28,18 @@ const Main = styled.View`
   align-items: center;
   justify-content: center;
 `;
-const ModalSongTitle = styled.Text`
-  font-size: 20;
-  margin-bottom: 20px;
-  color: ${props => props.theme.primaryColor};
+const ModalSongTitle = styled.View`
+  font-size: 18;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  color: ${(props) => props.theme.primaryColor};
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 `;
 const ModalSongArtist = styled.Text`
-  font-size: 18;
-  color: ${props => props.theme.secondaryColor};
+  font-size: 16;
+  color: ${(props) => props.theme.secondaryColor};
 `;
 
 class PlayerInfo extends React.PureComponent {
@@ -64,7 +69,14 @@ class PlayerInfo extends React.PureComponent {
         </Side>
         <Main>
           <ModalSongTitle>
-            {noTrack ? 'Listen1' : nowplayingTrack.title}
+            <TextTicker
+              style={{ fontSize: 18, color: this.props.theme.primaryColor }}
+              loop
+              repeatSpacer={0}
+              marqueeDelay={1000}
+            >
+              {noTrack ? 'Listen1' : nowplayingTrack.title}
+            </TextTicker>
           </ModalSongTitle>
           <ModalSongArtist>
             {noTrack ? 'Artist' : nowplayingTrack.artist}
