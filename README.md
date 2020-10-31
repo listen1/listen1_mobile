@@ -79,7 +79,7 @@ https://reactnative.cn/docs/signed-apk-android
 ## 更新日志
 
 `2020-10-31`
-
+- 修复网易云歌单只有10首歌的bug （感谢 @eatenid 的提交)
 - 优化下侧播放控制栏的弹窗性能
 - 修正了点击暂停按钮时导致闪退的 bug
 
