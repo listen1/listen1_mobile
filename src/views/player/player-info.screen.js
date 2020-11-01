@@ -5,36 +5,32 @@ import TextTicker from 'react-native-text-ticker';
 import { colors } from '../../config/colors';
 
 const ControlButton = styled.TouchableOpacity`
-  width: 60;
-  height: 60;
-  flex: 0 60px;
+  width: 40;
+  height: 40;
+  flex: 0 40px;
   align-items: center;
   justify-content: center;
 `;
 
 const ModalSongInfo = styled.View`
+  margin-top: 20;
   flex: 1;
-  align-items: center;
-  justify-content: center;
   flex-direction: row;
+  margin-left: 30;
+  margin-right: 30;
 `;
 const Side = styled.View`
-  flex: 0 60px;
+  flex: 0 40px;
 `;
 const Main = styled.View`
   flex: 1;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 const ModalSongTitle = styled.View`
-  font-size: 18;
-  margin-top: 10px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
   color: ${(props) => props.theme.primaryColor};
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  flex: 0 40px;
 `;
 const ModalSongArtist = styled.Text`
   font-size: 16;
@@ -57,19 +53,10 @@ class PlayerInfo extends React.PureComponent {
 
     return (
       <ModalSongInfo>
-        <Side>
-          <ControlButton onPress={this.props.onFav}>
-            <Icon
-              name={isFav ? 'favorite' : 'favorite-border'}
-              size={30}
-              color={isFav ? colors.heartRed : this.props.theme.secondaryColor}
-            />
-          </ControlButton>
-        </Side>
         <Main>
           <ModalSongTitle>
             <TextTicker
-              style={{ fontSize: 18, color: this.props.theme.primaryColor }}
+              style={{ fontSize: 24, color: this.props.theme.primaryColor }}
               repeatSpacer={100}
               marqueeDelay={1000}
             >
@@ -80,7 +67,15 @@ class PlayerInfo extends React.PureComponent {
             {noTrack ? 'Artist' : nowplayingTrack.artist}
           </ModalSongArtist>
         </Main>
-        <Side />
+        <Side>
+          <ControlButton onPress={this.props.onFav}>
+            <Icon
+              name={isFav ? 'favorite' : 'favorite-border'}
+              size={30}
+              color={isFav ? colors.heartRed : this.props.theme.secondaryColor}
+            />
+          </ControlButton>
+        </Side>
       </ModalSongInfo>
     );
   }

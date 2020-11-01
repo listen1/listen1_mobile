@@ -27,7 +27,7 @@ import { modalPlayerSetting } from '../../config/settings';
 const ModalPlayer = styled.View`
   flex: 1 0;
   align-items: center;
-  background: ${props => props.theme.windowColor};
+  background: ${(props) => props.theme.windowColor};
   padding-top: ${modalPlayerSetting.paddingTop};
   padding-bottom: ${modalPlayerSetting.paddingBottom};
 `;
@@ -35,16 +35,17 @@ const ModalPlayer = styled.View`
 const ModalSongCover = styled(AImage)`
   width: 300;
   height: 300;
+  border-radius: 20;
 `;
 
 const ModalSongTime = styled.Text`
   width: 50;
   flex: 0 50px;
   text-align: center;
-  color: ${props => props.theme.secondaryColor};
+  color: ${(props) => props.theme.secondaryColor};
 `;
 
-const transTime = time => {
+const transTime = (time) => {
   const minute = Math.floor(time / 60);
   const second = Math.floor(time % 60);
 
@@ -55,18 +56,20 @@ const transTime = time => {
 
 const styles = StyleSheet.create({
   sliderBtn: {
+    paddingLeft: 10,
+    paddingRight: 10,
     height: 40,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
   thumb: {
-    width: 20,
-    height: 20,
+    width: 14,
+    height: 14,
     backgroundColor: '#D43C33',
     borderColor: '#000',
-    borderWidth: 7,
-    borderRadius: 10,
+    borderWidth: 4,
+    borderRadius: 7,
   },
 });
 
@@ -117,6 +120,9 @@ class ModalPlayerView extends React.Component {
     );
 
   onFav = () => {
+    if (this.props.playerState.nowplayingTrack === null) {
+      return;
+    }
     this.props.dispatch(
       this.getFavStatus()
         ? removeFromMyFavorite(this.props.playerState.nowplayingTrack)
@@ -135,7 +141,7 @@ class ModalPlayerView extends React.Component {
 
     return isFav;
   }
-  sliderChange = value => {
+  sliderChange = (value) => {
     this.setState({ progress: value });
     const currentTime = this.props.playerState.duration * value;
 
@@ -178,7 +184,7 @@ class ModalPlayerView extends React.Component {
             onSlidingStart={() => {
               this.props.dispatch(updatePlayer({ isSeeking: true }));
             }}
-            onSlidingComplete={value => {
+            onSlidingComplete={(value) => {
               this.sliderChange(value);
             }}
           />

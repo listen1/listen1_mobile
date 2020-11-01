@@ -7,23 +7,23 @@ import styled, { withTheme } from 'styled-components';
 import { RowFlex } from '../../components';
 
 const ModalNavbar = styled.View`
-  height: 60;
-  height: 60;
+  height: 50;
+  height: 50;
   width: 100%;
-  flex: 0 60px;
-  margin-bottom: 10;
+  flex: 0 50px;
+  margin-bottom: 0;
 `;
 const ModalBackButton = styled.TouchableOpacity`
-  width: 60;
-  height: 60;
-  flex: 0 60px;
+  width: 50;
+  height: 50;
+  flex: 0 50px;
   align-items: center;
   justify-content: center;
 `;
 const ModalMoreButton = styled.TouchableOpacity`
-  width: 60;
-  height: 60;
-  flex: 0 60px;
+  width: 50;
+  height: 50;
+  flex: 0 50px;
   align-items: center;
   justify-content: center;
 `;
@@ -44,7 +44,7 @@ class PlayerNav extends React.PureComponent {
           <ModalBackButton onPress={this.props.onBack}>
             <Icon
               name="keyboard-arrow-down"
-              size={40}
+              size={30}
               color={this.props.theme.primaryColor}
             />
           </ModalBackButton>
@@ -52,7 +52,7 @@ class PlayerNav extends React.PureComponent {
           <ModalMoreButton onPress={this.props.onMore}>
             <Icon
               name="more-horiz"
-              size={40}
+              size={30}
               color={this.props.theme.primaryColor}
             />
           </ModalMoreButton>
