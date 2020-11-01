@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import styled, { withTheme } from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -24,7 +24,7 @@ const PlaylistHeaderCover = styled(AImage)`
 const PlaylistHeaderTitle = styled.Text`
   flex: 1;
   margin-left: 10;
-  color: ${props => props.theme.primaryColor};
+  color: ${(props) => props.theme.primaryColor};
   font-size: 16;
 `;
 const ControlButton = styled.TouchableOpacity`
@@ -34,7 +34,10 @@ const ControlButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 `;
-
+const PlaceHolder = styled(RowFlex)`
+  align-items: center;
+  justify-content: center;
+`;
 class Playlist extends React.Component {
   static navigationOptions = ({ screenProps }) => {
     return {
@@ -60,9 +63,15 @@ class Playlist extends React.Component {
         // tracks: this.props.myPlaylistState.myPlaylistDict[item.info.id].tracks,
         // info: item.info,
         id: item.info.id,
+        loading: true,
       };
     } else {
-      this.state = { id: item.info.id, tracks: [], info: item.info };
+      this.state = {
+        id: item.info.id,
+        tracks: [],
+        info: item.info,
+        loading: true,
+      };
     }
     this.onPressRow = this.onPressRow.bind(this);
     this.popup = this.popup.bind(this);
@@ -70,13 +79,15 @@ class Playlist extends React.Component {
 
   componentDidMount() {
     if (this.isMyPlaylist()) {
+      this.setState({ loading: false });
       return;
     }
-    LApi.getPlaylist(this.state.id).then(r => {
+    this.setState({ loading: true });
+    LApi.getPlaylist(this.state.id).then((r) => {
       if (this.state.info.cover_img_url !== undefined) {
-        this.setState({ tracks: r.tracks });
+        this.setState({ tracks: r.tracks, loading: false });
       } else {
-        this.setState({ tracks: r.tracks, info: r.info });
+        this.setState({ tracks: r.tracks, info: r.info, loading: false });
       }
     });
   }
@@ -123,7 +134,7 @@ class Playlist extends React.Component {
   popup(item) {
     this.props.dispatch(openModalLite({ height: 350, type: 'track', item }));
   }
-  _keyExtractor = item => item.id;
+  _keyExtractor = (item) => item.id;
   isMyPlaylist() {
     return this.state.id.startsWith('my');
   }
@@ -150,38 +161,19 @@ class Playlist extends React.Component {
                   <PlaylistHeaderCover source={info.cover_img_url || ''} />
                   <PlaylistHeaderTitle>{info.title || ''}</PlaylistHeaderTitle>
                 </PlaylistHeader>
-                <RowFlex style={{ paddingLeft: 20, paddingRight: 20 }}>
-                  <ControlButton
-                    style={{ flex: 1 }}
-                    onPress={() => this.props.dispatch(playTracks(tracks))}
-                  >
-                    <Icon
-                      name="play-circle-outline"
-                      size={26}
-                      color={this.props.theme.primaryColor}
-                    />
-
-                    <Text
-                      style={{
-                        marginLeft: 10,
-                        color: this.props.theme.primaryColor,
-                      }}
-                    >
-                      {`播放全部(共${tracks.length}首)`}
-                    </Text>
-                  </ControlButton>
-                  {this.isMyPlaylist() ? (
+                {this.state.loading === true && (
+                  <PlaceHolder>
+                    <ActivityIndicator color="#777777" />
+                  </PlaceHolder>
+                )}
+                {this.state.loading === false && (
+                  <RowFlex style={{ paddingLeft: 20, paddingRight: 20 }}>
                     <ControlButton
-                      style={{ flex: 0, flexBasis: 100 }}
-                      onPress={() => {
-                        this.props.navigation.navigate('ReOrder', {
-                          type: 'playlist',
-                          playlist: { info, tracks },
-                        });
-                      }}
+                      style={{ flex: 1 }}
+                      onPress={() => this.props.dispatch(playTracks(tracks))}
                     >
                       <Icon
-                        name="reorder"
+                        name="play-circle-outline"
                         size={26}
                         color={this.props.theme.primaryColor}
                       />
@@ -192,34 +184,62 @@ class Playlist extends React.Component {
                           color: this.props.theme.primaryColor,
                         }}
                       >
-                        编辑歌单
+                        {`播放全部(共${tracks.length}首)`}
                       </Text>
                     </ControlButton>
-                  ) : (
-                    <ControlButton
-                      style={{ flex: 0, flexBasis: 100 }}
-                      onPress={() => {
-                        this.props.dispatch(createMyPlaylist({ info, tracks }));
-                        showToast('收藏成功');
-                      }}
-                    >
-                      <Icon
-                        name="add-box"
-                        size={26}
-                        color={this.props.theme.primaryColor}
-                      />
-
-                      <Text
-                        style={{
-                          marginLeft: 10,
-                          color: this.props.theme.primaryColor,
+                    {this.isMyPlaylist() ? (
+                      <ControlButton
+                        style={{ flex: 0, flexBasis: 100 }}
+                        onPress={() => {
+                          this.props.navigation.navigate('ReOrder', {
+                            type: 'playlist',
+                            playlist: { info, tracks },
+                          });
                         }}
                       >
-                        收藏歌单
-                      </Text>
-                    </ControlButton>
-                  )}
-                </RowFlex>
+                        <Icon
+                          name="reorder"
+                          size={26}
+                          color={this.props.theme.primaryColor}
+                        />
+
+                        <Text
+                          style={{
+                            marginLeft: 10,
+                            color: this.props.theme.primaryColor,
+                          }}
+                        >
+                          编辑歌单
+                        </Text>
+                      </ControlButton>
+                    ) : (
+                      <ControlButton
+                        style={{ flex: 0, flexBasis: 100 }}
+                        onPress={() => {
+                          this.props.dispatch(
+                            createMyPlaylist({ info, tracks })
+                          );
+                          showToast('收藏成功');
+                        }}
+                      >
+                        <Icon
+                          name="add-box"
+                          size={26}
+                          color={this.props.theme.primaryColor}
+                        />
+
+                        <Text
+                          style={{
+                            marginLeft: 10,
+                            color: this.props.theme.primaryColor,
+                          }}
+                        >
+                          收藏歌单
+                        </Text>
+                      </ControlButton>
+                    )}
+                  </RowFlex>
+                )}
               </Flex>
             );
           }}
