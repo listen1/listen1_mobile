@@ -19,6 +19,16 @@
 - 夜间模式
 - 备份，恢复(支持从`Listen1 chrome extension`导入数据)
 
+## 下载
+
+国内下载（蓝奏云）网址：https://yujiangqaq.lanzous.com/b0104q89e
+
+密码： listen1
+
+特别感谢 @yujiangqaq 维护国内镜像
+
+Github主页下载： https://listen1.github.io/listen1
+
 ## 安装
 
 ### iOS
