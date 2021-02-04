@@ -1,4 +1,4 @@
-Mobile music app for multiple music platforms with play and search support. Current version supports Netease Music, QQ Music, and Xiami Music. Playlist measurement is also supported. Developed with React Native. Distributed under MIT license.
+Mobile music app for multiple music platforms with play and search support. Current version supports Netease Music, QQ Music, and Xiami Music. Playlist management is also supported. Developed with React Native. Distributed under MIT license.
 
 Features:
 
