@@ -1,0 +1,10 @@
+Mobile music app for multiple music platforms with play and search support. Current version supports Netease Music, QQ Music, and Xiami Music. Playlist management is also supported. Developed with React Native. Distributed under MIT license.
+
+Features:
+
+    * One app for multiple music platforms
+    * Search songs from multiple music platforms
+    * Browse and play playlist on multiple music platforms
+    * Add your favorite music to your own playlist
+    * Night mode
+    * Backup and restore (importing data from Listen1 chrome extension supported)
