@@ -1,6 +1,6 @@
 {
   "name": "listen1-mobile",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": true,
   "scripts": {
     "start": "react-native start",
@@ -10,7 +10,8 @@
     "start:ios:no-packager": "react-native run-ios --no-packager",
     "link": "react-native link",
     "eslint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "release": "react-native run-android --variant=release"
   },
   "dependencies": {
     "@react-native-community/toolbar-android": "^0.1.0-rc.2",
