@@ -29,6 +29,10 @@
 
 Github 主页下载： https://listen1.github.io/listen1
 
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
+    alt="Get it on F-Droid"
+    height="80">](https://f-droid.org/packages/com.listen1.app)
+
 ## 安装
 
 ### iOS
