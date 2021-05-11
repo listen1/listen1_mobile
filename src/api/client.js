@@ -1,11 +1,11 @@
 import qq from './provider/qq';
 import netease from './provider/netease';
 import kugou from './provider/kugou';
-// import kuwo from './provider/kuwo';
+import kuwo from './provider/kuwo';
 // import bilibili from './provider/bilibili';
 // import migu from './provider/migu';
 
-const availableProvider = [netease, kugou, qq];
+const availableProvider = [netease, kugou, kuwo, qq];
 
 const enabledProvider = availableProvider;
 
