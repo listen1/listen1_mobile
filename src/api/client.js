@@ -1,18 +1,22 @@
 import qq from './provider/qq';
 import netease from './provider/netease';
-import xiami from './provider/xiami';
+import kugou from './provider/kugou';
+// import kuwo from './provider/kuwo';
+// import bilibili from './provider/bilibili';
+// import migu from './provider/migu';
 
-const availableProvider = [netease, qq, xiami];
+const availableProvider = [netease, kugou, qq];
+
 const enabledProvider = availableProvider;
 
 function getPlatformArray() {
-  return enabledProvider.map(provider => provider.meta);
+  return enabledProvider.map((provider) => provider.meta);
 }
 
 const prefix2provider = {};
 const enName2NameDict = {};
 
-enabledProvider.forEach(provider => {
+enabledProvider.forEach((provider) => {
   prefix2provider[provider.meta.platformId] = provider;
   enName2NameDict[provider.meta.enName] = provider.meta.name;
 });
@@ -63,7 +67,7 @@ export default class Client {
     let result = null;
 
     // eslint-disable-next-line consistent-return
-    enabledProvider.forEach(provider => {
+    enabledProvider.forEach((provider) => {
       const r = provider.parseUrl(url);
 
       if (r !== null) {
