@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { Platform, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import Video from 'react-native-video';
 import MusicControl from 'react-native-music-control';
@@ -21,11 +21,13 @@ function isDiffTrack(tr1, tr2) {
 
   return tr1.id !== tr2.id;
 }
+let StopTimer;
 
 class BackgroundPlayer extends Component {
   props: {
     playerState: Object,
     dispatch: Function,
+    settingState: Object,
   };
   state = {
     rate: 1,
@@ -87,6 +89,20 @@ class BackgroundPlayer extends Component {
           ? MusicControl.STATE_PLAYING
           : MusicControl.STATE_PAUSED,
       });
+    }
+
+    // detect now playing track change
+
+    const { settingState: { stopTime: prevStopTime } } = this.props;
+    const { settingState: { stopTime: nextStopTime } } = nextProps;
+
+    if (prevStopTime !== nextStopTime) {
+      clearTimeout(StopTimer);
+      if (nextStopTime) {
+        StopTimer = setTimeout(() => {
+          BackHandler.exitApp();
+        }, nextStopTime - new Date());
+      }
     }
   }
 
@@ -200,8 +216,9 @@ class BackgroundPlayer extends Component {
   }
 }
 
-const mapStateToProps = ({ playerState }) => ({
+const mapStateToProps = ({ playerState, settingState }) => ({
   playerState,
+  settingState,
 });
 
 export default connect(mapStateToProps)(BackgroundPlayer);
