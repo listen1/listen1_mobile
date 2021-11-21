@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
-    "@react-native-community/datetimepicker": "^3.5.2",
     "@react-native-community/toolbar-android": "^0.1.0-rc.2",
     "deprecated-react-native-listview": "^0.0.5",
     "md5": "^2.2.1",
