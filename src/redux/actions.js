@@ -24,6 +24,7 @@ export const TYPE = {
   ADD_TO_MY_FAVORITE: 'ADD_TO_MY_FAVORITE',
   REMOVE_FROM_MY_FAVORITE: 'REMOVE_FROM_MY_FAVORITE',
   RECOVER_DATA: 'RECOVER_DATA',
+  SET_STOP_TIMER: 'SET_STOP_TIMER',
 };
 
 export const playTrack = track => ({
@@ -125,5 +126,9 @@ export const removeFromMyFavorite = payload => ({
 });
 export const recoverData = payload => ({
   type: TYPE.RECOVER_DATA,
+  payload,
+});
+export const setStopTimer = payload => ({
+  type: TYPE.SET_STOP_TIMER,
   payload,
 });
