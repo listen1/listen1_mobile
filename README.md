@@ -21,12 +21,6 @@
 
 ## 下载
 
-国内下载（蓝奏云）网址：https://yujiangqaq.lanzous.com/b0104q89e
-
-密码： listen1
-
-特别感谢 @yujiangqaq 维护国内镜像
-
 Github 主页下载： https://listen1.github.io/listen1
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
