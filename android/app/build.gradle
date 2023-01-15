@@ -156,13 +156,15 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':@react-native-community_toolbar-android')
     implementation project(path: ':@react-native-community_async-storage')
     implementation project(path: ':react-native-music-control')
     implementation project(path: ':react-native-vector-icons')
     implementation project(path: ':react-native-gesture-handler')
+    implementation project(path: ':react-native-screens')
     implementation project(path: ':react-native-video')
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "androidx.activity:activity:1.3.0"
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "org.webkit:android-jsc:+"
 }

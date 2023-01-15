@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Clipboard } from 'react-native';
+import { ScrollView, Clipboard, View, Platform, NativeModules  } from 'react-native';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import styled, { withTheme } from 'styled-components';
@@ -26,15 +26,16 @@ class ImportLocal extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = { jsonString: '', isValidJson: false };
+    this.state = { jsonString: '', isValidJson: false , deviceOS: Platform.OS};
     this.onPressPaste = this.onPressPaste.bind(this);
     this.onPressRecover = this.onPressRecover.bind(this);
+    this.onPressImportFile = this.onPressImportFile.bind(this);
   }
 
   onPressPaste = () => {
     Clipboard.getString().then(jsonString => {
-      try {
-        JSON.parse(jsonString);
+    try {
+      JSON.parse(jsonString);      
       } catch {
         this.setState({ jsonString: '', isValidJson: false });
 
@@ -52,6 +53,17 @@ class ImportLocal extends React.Component {
     this.props.dispatch(recoverData(state));
     showToast('恢复成功,请返回');
   };
+
+  onPressImportFile = () => {
+    NativeModules.FileImportConfig.readFile((jsonString) => {
+      this.setState({ jsonString, isValidJson: true });
+      return showToast('文件导入成功');
+    },
+    (errorInfo) => {
+      return showToast('从文件导入失败，文件内容错误');
+    });
+  };
+
   render() {
     // console.log(`render ${this.constructor.name}`);
 
@@ -71,6 +83,9 @@ class ImportLocal extends React.Component {
           />
         )}
 
+        {(!this.state.isValidJson && this.state.deviceOS == 'android') ? (
+          <View style={{ marginTop: 10 }}><Button title="从文件导入" onPress={this.onPressImportFile} /></View>
+        ) : null}
         <PrimaryText style={{ marginTop: 10 }}>
           恢复方法：复制之前备份的文本，点击“从剪切板粘贴”,
           再点击“恢复”就可以了。
