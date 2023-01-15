@@ -29,12 +29,13 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new AsyncStoragePackage(),
-            new MusicControl(),
-            new VectorIconsPackage(),
-            new RNGestureHandlerPackage(),
-            new ReactVideoPackage()
+              new MainReactPackage(),
+              new MainPackage(),
+              new AsyncStoragePackage(),
+              new MusicControl(),
+              new VectorIconsPackage(),
+              new RNGestureHandlerPackage(),
+              new ReactVideoPackage()
       );
     }
 

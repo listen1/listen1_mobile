@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, Clipboard, Button } from 'react-native';
+import { ScrollView, Clipboard, View, Platform, NativeModules} from 'react-native';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import styled, { withTheme } from 'styled-components';
 import StateJsonConvert from '../../modules/state-json-convert';
@@ -25,8 +26,9 @@ class ExportLocal extends React.Component {
   };
   constructor(props) {
     super(props);
-    this.state = { jsonString: '' };
+    this.state = { jsonString: '' , deviceOS: Platform.OS};
     this.onPressCopy = this.onPressCopy.bind(this);
+    this.onExportConfigToFile = this.onExportConfigToFile.bind(this);
   }
   componentDidMount() {
     // generate backup json
@@ -39,7 +41,17 @@ class ExportLocal extends React.Component {
   }
   onPressCopy = () => {
     Clipboard.setString(this.state.jsonString);
+    console.log(`render ${this.state.jsonString}`);
     showToast('已复制到剪切板');
+  };
+  onExportConfigToFile=()=>{
+    NativeModules.FileImportConfig.writeFile(this.state.jsonString,(writeState)=>{
+      if (writeState) {
+        showToast('备份成功: /storage/emulated/0/Download/listen1_backup.json');
+      }else{
+        showToast('备份失败');
+      }
+    })
   };
   render() {
     // console.log(`render ${this.constructor.name}`);
@@ -50,6 +62,11 @@ class ExportLocal extends React.Component {
           <PrimaryText> {this.state.jsonString}</PrimaryText>
         </Preview>
         <Button title="一键复制" onPress={this.onPressCopy} />
+
+        {(this.state.deviceOS == 'android')?(
+        <View style={{ marginTop: 10 }}><Button title="备份到文件" onPress={this.onExportConfigToFile} /></View>
+        ):null}
+        
         <PrimaryText style={{ marginTop: 10 }}>
           备份方法：点击一键复制后，将内容粘贴到文本文件或笔记中，恢复时在恢复窗口粘贴回来就可以了。
         </PrimaryText>
