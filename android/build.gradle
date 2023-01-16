@@ -6,8 +6,8 @@ buildscript {
         //以下代码用于统一项目编译版本
         buildToolsVersion = "28.0.3"
         minSdkVersion = 21
-        compileSdkVersion = 32
-        targetSdkVersion = 33
+        compileSdkVersion = 28
+        targetSdkVersion = 28
         supportLibVersion = "28.0.0"
         set('compileSdkVersion', compileSdkVersion)
         set('buildToolsVersion', buildToolsVersion)
