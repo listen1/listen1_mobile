@@ -147,17 +147,24 @@ android {
             }
         }
     }
+    packagingOptions {
+        //当项目中出现多个同名的so文件会编译异常，过滤多余的so文件
+        pickFirst '**/libfbjni.so'
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libjsc.so'
+    }
 }
 
 dependencies {
-    implementation project(':@react-native-community_async-storage')
-    implementation project(':react-native-music-control')
-    implementation project(':react-native-vector-icons')
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-video')
+    implementation project(path: ':@react-native-community_async-storage')
+    implementation project(path: ':react-native-music-control')
+    implementation project(path: ':react-native-vector-icons')
+    implementation project(path: ':react-native-gesture-handler')
+    implementation project(path: ':react-native-video')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation "org.webkit:android-jsc:+"
 }
 
 // Run this once to be able to run the application with BUCK
